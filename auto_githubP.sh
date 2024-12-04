@@ -6,4 +6,4 @@ git add .
 
 git commit -m "Automated update: $(date)"
 
-git push origin main
+git push
