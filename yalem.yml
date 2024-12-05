@@ -1,0 +1,27 @@
+name: Daily Push
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This cron expression means every day at midnight UTC
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Make changes
+      run: |
+        # Add commands here to make changes to the repo
+        echo "Some change" >> file.txt
+        git add file.txt
+        git commit -m "Automated commit"
+
+    - name: Push changes
+      run: |
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
